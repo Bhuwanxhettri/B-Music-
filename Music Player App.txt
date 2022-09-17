@@ -1,0 +1,14 @@
+-> login and log out features
+-> simple profile features
+-> Music upload form / music can be public and private
+    -> music file
+    -> thumbmail
+    -> Original music name
+    -> creator Name
+-> favoriute music
+-> music uploaded news feeds
+
+-> most listen music  top listest (advance features)
+ 
+
+
