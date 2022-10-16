@@ -1,20 +1,76 @@
-const express = require('express')
-const app = express()
-const port = 3001
+import express  from "express";
+import cors from "cors"
+import bodyParser from "body-parser";
+import router from "./routes/user-routes";
+import blogRouter from "./routes/blog-routes";
+import { databaseConnect } from "./db/db";
 
-const cors = require('cors')
-app.use(cors())
+// import cloudinary from 'cloudinary'
+// import multer from "multer";
 
-//  body parser
-const bodyParser = require("body-parser");
+
+const app = express();
+app.listen(process.env.PORT,()=>{
+    console.log("server is on port on 5000");
+})
+app.use(cors());
 app.use(bodyParser.json());
 
 
+// database connection
+databaseConnect();
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+// Router
+ // user Router
+app.use(router);
+
+app.use(blogRouter);
+
+
+   // Get the file name and extension with multer
+
+//    const upload = multer({
+//       storage:multer.diskStorage({
+//          filename: (req, file, cb) => {
+//             const fileExt = file.originalname.split(".").pop();
+//             const filename = `${new Date().getTime()}.${fileExt}`;
+//             cb(null, filename);
+//           },
+//       }),
+//       fileFilter:(req,file,cb)=>{
+//          if (file.mimetype === "audio/mp3" || file.mimetype === "audio/mpeg") {
+//             cb(null, true);
+//           } else {
+//             cb(
+//               {
+//                 message: "Unsupported File Format",
+//               },
+//               false
+//             );
+//           }
+//       }
+//  })
+
+
+// app.post("/audio/upload",upload.single('audio'), async (req, res) => {
+//    cloudinary.config({ 
+//       cloud_name: 'dkkrabfyq', 
+//       api_key: '437437346396341', 
+//       api_secret: 'NxcokKMJrIIQmVHBU42Z6rX8rLE' 
+//     });
+//    try{
+//       var result = await cloudinary.uploader.upload(req.file.path);
+//       res.json({
+//          message:result
+//       })
+
+//    }catch(err){
+//         console.log(err);
+//    }
+
+//  });
+ 
+
+
+

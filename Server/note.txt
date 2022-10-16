@@ -1,0 +1,22 @@
+
+creating hash password
+-> npm i bycript js
+
+mongoose method
+-> find()
+-> findOne({email})  this is with filter
+->findByIdAndUpdate(fileter,update)
+->findByIdAndRemove(id);
+-> findById(id)
+-> save()
+
+
+# Relation between blogs and the user
+  type :mongoose.Types.ObjectId,
+  ref :"collectionName" should be 
+ # populate it reference to the rleation documet (
+   example delteting the blog and poultate the user blog and delete from that also
+ )
+
+
+https://medium.com/analytics-vidhya/upload-image-in-cloudinary-using-mern-stack-39fcb4ed9d9e
