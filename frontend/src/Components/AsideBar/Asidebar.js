@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {Link, useNavigate } from 'react-router-dom';
 import {useSelector,useDispatch} from "react-redux";
 import { logout} from '../../store/authSlice'
@@ -51,7 +51,7 @@ const Asidebar = () => {
             </ul>
 
             <div>
-                <h3 className='text-teal-800 mx-5 font-bold'>Dark Mode</h3>
+                <h3 className='text-black-800 mx-5 font-bold'>Dark Mode</h3>
                  <DarkMode/>
              </div>
 
