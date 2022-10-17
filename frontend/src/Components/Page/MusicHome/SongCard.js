@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 
 const SongCard = ({song,isPlaying,activeSong,i,data}) => {
     const dispatch = useDispatch();
+
     const handlePauseClick = () => {
         dispatch(playPause(false));
       };
@@ -16,16 +17,16 @@ const SongCard = ({song,isPlaying,activeSong,i,data}) => {
       };
   return (
    <>
-      <div className="flex flex-col gap-10 w-[230px]  transition-all  bg-blue-500 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer">
+      <div className="flex flex-col gap-10 w-[230px]  transition-all  bg-white backdrop-blur-sm animate-slideup rounded-lg cursor-pointer">
             <div className=" relative w-full h-48 group">
                 <div className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 hover:bg-opacity-10 transition-all tran flex `}>
-                <PlayPause
-                    isPlaying={isPlaying}
-                    activeSong={activeSong}
-                    song={song}
-                    handlePause={handlePauseClick}
-                    handlePlay={handlePlayClick}
-                />
+                    <PlayPause
+                        isPlaying={isPlaying}
+                        activeSong={activeSong}
+                        song={song}
+                        handlePause={handlePauseClick}
+                        handlePlay={handlePlayClick}
+                    />
                 </div>
                 <img alt="song_img" src={song.images?.coverart} className="w-full h-full rounded-lg" />
             </div>
