@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { nextSong, prevSong, playPause } from '../../../../store/features/playerSlice';
 import Controls from './Controls';
 import Player from './Player';
@@ -48,7 +47,7 @@ const MusicPlayer = () => {
       <div className="ml-56 my-3    sm:px-12  w-40 flex items-center justify-between">
           <Track isPlaying={isPlaying} isActive={isActive} activeSong={activeSong} />
           <div className="flex-1 flex flex-col items-center justify-center">
-            {/* <Controls
+            <Controls
               isPlaying={isPlaying}
               isActive={isActive}
               repeat={repeat}
@@ -57,17 +56,17 @@ const MusicPlayer = () => {
               setShuffle={setShuffle}
               currentSongs={currentSongs}
               handlePlayPause={handlePlayPause}
-              handlePrevSong={handlePrevSong}
+              // handlePrevSong={handlePrevSong}
               handleNextSong={handleNextSong}
-            /> */}
-            {/* <Seekbar
+            />
+            <Seekbar
               value={appTime}
               min="0"
               max={duration}
               onInput={(event) => setSeekTime(event.target.value)}
               setSeekTime={setSeekTime}
               appTime={appTime}
-            /> */}
+            />
             <Player
               activeSong={activeSong}
               volume={volume}
@@ -80,7 +79,7 @@ const MusicPlayer = () => {
               onLoadedData={(event) => setDuration(event.target.duration)}
             />
           </div>
-          {/* <VolumeBar value={volume} min="0" max="1" onChange={(event) => setVolume(event.target.value)} setVolume={setVolume} /> */}
+          <VolumeBar value={volume} min="0" max="1" onChange={(event) => setVolume(event.target.value)} setVolume={setVolume} />
       </div>
 
   

@@ -26,7 +26,7 @@ export const getAllBlogs = async(req,res)=>{
      let resultPerPage =3;
      const blogCount = await Blog.countDocuments();
      const apiFeature = new ApiFeatures(Blog.find(),req.query).pagination(resultPerPage)
-     console.log(apiFeature);
+   //   console.log(apiFeature);
      try{
          blogs = await apiFeature.query;
      }catch(err){

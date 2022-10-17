@@ -3,6 +3,7 @@ import { getTopCharts } from '../../../services/musicApiCall/apiCall';
 import SongCard from './SongCard';
 import {useSelector } from 'react-redux';
 import { Audio } from  'react-loader-spinner'
+import MusicPlayer from './MusicPlayer/MusicPlayer'
 
 const genres = [
   { title: 'Hip-Hop', value: 'HIP_HOP_RAP' },
@@ -22,7 +23,7 @@ const MusicList = () => {
 
   useEffect(()=>{ 
      setLoading(true);
-    const fetchData = async ()=>{
+     const fetchData = async ()=>{
      const data =  await getTopCharts(`charts/genre-world?genre_code=${genreListId}`);
      setTopCharts(data)
      setLoading(false);
@@ -38,6 +39,9 @@ const MusicList = () => {
                   {genres.map((genre) => <option key={genre.value} value={genre.value}>{genre.title}</option>)}
               </select>
             </div>
+            
+            <MusicPlayer/>
+
             <div className="shadow-orange-50  shadow-xl ml-72 flex flex-wrap sm:justify-start justify-center gap-8">
 
                {

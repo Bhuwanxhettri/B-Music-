@@ -4,14 +4,14 @@ import bodyParser from "body-parser";
 import router from "./routes/user-routes";
 import blogRouter from "./routes/blog-routes";
 import { databaseConnect } from "./db/db";
-
 // import cloudinary from 'cloudinary'
 // import multer from "multer";
 
 
+const port = 5000;
 const app = express();
-app.listen(process.env.PORT,()=>{
-    console.log("server is on port on 5000");
+app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
 })
 app.use(cors());
 app.use(bodyParser.json());

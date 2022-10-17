@@ -4,20 +4,25 @@ import { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import {ColorRing} from  'react-loader-spinner'
 
 const MusicInsta = () => {
   const [PostData,setPostData] = useState([]);
   const [totalPost,setTotalPost] = useState();
   const [currentPage,setCurrentPage] = useState(1);
+  const [loding,setLoding] = useState(false);
   const fetchPostData = async()=>{
+    setLoding(true);
     const res = await fetch(`http://localhost:5000/instaMusic?page=${currentPage}`);
     const data = await res.json();
+    setLoding(false)
     setPostData(data.blogs);
-    setTotalPost(data.blogCount)
+    setTotalPost(data.blogCount);
   }
-
   useEffect(()=>{
+  
     fetchPostData()
+   
   },[currentPage])
 
 
@@ -37,7 +42,6 @@ const MusicInsta = () => {
   const handleChange = (event, value) => {
     setCurrentPage(value);
   };
-
   return (
     <> 
         <div class="bg-slate-300 z-40 p-2 drop-shadow-2xl font-extrabold border-r-8 sticky top-0 text-black text-center block  text-3xl">
@@ -51,7 +55,26 @@ const MusicInsta = () => {
        
        <div className='flex justify-center gap-20'>
             <div className='flex gap-5 ml-72 flex-wrap'>
+           
+               
                 {
+                  
+                  loding ?
+                  <>
+                    <div className='my-44'>
+                        <span className='text-xl text-red-700 font-bold'>Loading.....</span>
+                        <ColorRing
+                            visible={true}
+                            height="180"
+                            width="180"
+                            ariaLabel="blocks-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="blocks-wrapper"
+                            colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+                        />
+                    </div>
+                     
+                  </>:
                    PostData.slice(0).reverse().map((item)=>{            
                           return(
                                 <>
@@ -61,9 +84,6 @@ const MusicInsta = () => {
                                     uploadedTime={item.createdAt}
                                     Genere={item.genere}
                                     img={item.image}
-                                    // description={item.description}
-                                    // Likes={item.Likes}
-                                    // comments={item.comments}
                                   />
                                 </>
                    )})
