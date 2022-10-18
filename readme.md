@@ -11,6 +11,6 @@ Technology used MongoDB,Node Js,Express Material Ui Tailwind css , All music dat
 
 
 
-future Plans
- Voice Searching Features
- Googel Authentication Otp Based Login
+Future Plans
+- [ ] Voice Searching Features
+- [ ] Googel Authentication Otp Based Login
