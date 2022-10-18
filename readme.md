@@ -6,8 +6,8 @@ Technology used MongoDB,Node Js,Express Material Ui Tailwind css , All music dat
 - [x] Authentication login & register
 - [x] Music Blog Page
 - [x] Music Play and Puse buddon
-- [ ] Search music featuser 
-- [ ] 
+- [ ] Search music feature
+
 
 
 
