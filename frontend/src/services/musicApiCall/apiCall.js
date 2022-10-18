@@ -12,3 +12,9 @@ export const getTopCharts = async(endpoint)=>{
    const data = res.json();
    return data;
 }
+
+export const searchMusic = async(endpoint)=>{
+  const res = await fetch(`${BASE_URL}/${endpoint}`,Options)
+  const data = res.json();
+  return data;
+}
