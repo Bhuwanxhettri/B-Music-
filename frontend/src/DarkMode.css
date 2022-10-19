@@ -6,8 +6,8 @@
   
   [data-theme="dark"] {
     --font-color: rgb(230, 6, 6);
-    --background-color: rgb(41, 34, 34);
-    --link-color: rgb(255, 253, 253);
+    --background-color: rgba(0, 0, 0, 0.703);
+    --link-color: rgb(158, 0, 0);
   }
   
   body {

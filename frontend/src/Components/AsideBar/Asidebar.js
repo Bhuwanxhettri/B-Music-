@@ -14,7 +14,7 @@ const Asidebar = () => {
   }
   return (
     <>
-      <div style={{backgroundColor:"blue"}} className=" aside w-60 h-screen fixed z-50  shadow-2xl ">
+      <div style={{backgroundColor:"#F9F9F9"}} className=" aside w-60 h-screen fixed z-50 shadow-orange-50  shadow-xl ">
             <div className="pt-4 pb-2 px-6 ">
                     <div className="flex items-center">
                         <ul className="grow ml-3">

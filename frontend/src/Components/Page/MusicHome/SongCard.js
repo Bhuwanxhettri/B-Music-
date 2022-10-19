@@ -1,12 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 import PlayPause from './PlayPause';
 import { playPause, setActiveSong } from '../../../store/features/playerSlice';
-import { useDispatch } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
+// import { AiFillHeart } from "react-icons/ai";
 
 const SongCard = ({song,isPlaying,activeSong,i,data}) => {
     const dispatch = useDispatch();
-
+    const {isLoggedIn} = useSelector(state=>state.auth);
     const handlePauseClick = () => {
         dispatch(playPause(false));
       };
@@ -15,11 +15,15 @@ const SongCard = ({song,isPlaying,activeSong,i,data}) => {
         dispatch(setActiveSong({ song, data, i }));
         dispatch(playPause(true));
       };
+
+      const FavoriuteSong = (fevSong)=>{
+         console.log(fevSong);
+      }
   return (
    <>
-      <div className="flex flex-col gap-10 w-[230px]  transition-all  bg-white backdrop-blur-sm animate-slideup rounded-lg cursor-pointer">
-            <div className=" relative w-full h-48 group">
-                <div className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 hover:bg-opacity-10 transition-all tran flex `}>
+      <div className="flex flex-col gap-3 w-[230px]  transition-all  bg-white backdrop-blur-sm animate-slideup rounded-lg ">
+            <div className=" cursor-pointer relative w-full h-48 group">
+                <div className={`absolute inset-0 justify-center items-center bg-black bg-opacity-20 hover:bg-opacity-5 transition-all tran flex `}>
                     <PlayPause
                         isPlaying={isPlaying}
                         activeSong={activeSong}
@@ -29,19 +33,24 @@ const SongCard = ({song,isPlaying,activeSong,i,data}) => {
                     />
                 </div>
                 <img alt="song_img" src={song.images?.coverart} className="w-full h-full rounded-lg" />
-            </div>
-            <div className=" p-4 flex flex-col">
-                <p className="font-semibold text-lg text-white truncate">
-                    <Link to={``}>
+            </div>  
+            <div className=" px-4 py-3 flex flex-col">
+                {
+                   isLoggedIn && 
+                   <>
+                      <button onClick={()=>{FavoriuteSong(song)}} type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm  text-gray-900 focus:outline-none bg-slate-200 shadow-red-100 shadow-lg font-bold rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add to Favoriute</button>
+                   </>
+                }
+                <p className="font-semibold text-lg text-black truncate">
                         {song.title}
-                    </Link>
                 </p>
-                <p className="text-sm truncate text-gray-300 mt-1">
-                    <Link to="">
+                <p className="text-sm truncate text-blackc mt-1">
                         {song.subtitle}
-                    </Link>
                 </p>
+    
             </div>
+
+           
     </div>
    </>
   )

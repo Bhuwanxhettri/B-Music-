@@ -20,7 +20,7 @@ const genres = [
 ];
 const MusicList = () => {
   const [topCharts,setTopCharts] = useState();
-  const [genreListId,setGenreListId] = useState("ALTERNATIVE");
+  const [genreListId,setGenreListId] = useState("ELECTRONIC");
   const {isPlaying,activeSong} = useSelector((state)=>state.player);
   const [loading, setLoading] = useState(true);
   const [searchKey,setSearchKey] = useState("");

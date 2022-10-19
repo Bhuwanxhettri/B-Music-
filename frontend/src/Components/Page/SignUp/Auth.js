@@ -48,37 +48,30 @@ const Auth = () => {
   }
   return (
     <>
-      <form onSubmit={handleSubmit} className='mt-24 p-2 drop-shadow-xl flex flex-col mx-auto  gap-2 w-72 bg-slate-300 '>
+      <form onSubmit={handleSubmit} className='mt-24 p-2 w-6/12 drop-shadow-xl flex flex-col mx-auto  gap-2  py-14 px-5 bg-slate-300 '>
            
-           <h3 className='text-3xl font-bold text-center'>{isSignup?"Sign up":"Login"}</h3>
+           <h3 className='text-4xl mb-8 font-bold text-center'>{isSignup?"Sign up":"Login"}</h3>
            {
              isSignup &&
             <>
-              <input
-               class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-               placeholder="Name"
-               required onChange={handleChange} name="name"  value={inputs.name} type="text"></input>
-              <input
-    
-               class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-               placeholder="Email address"
-               required onChange={handleChange} name="email"  value={inputs.email} type="email"></input>
+              <input class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Name"
+                     required onChange={handleChange} name="name"  value={inputs.name} type="text"></input>
+              <input className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"placeholder="Email address"
+                     required onChange={handleChange} name="email"  value={inputs.email} type="email"></input>
               { !validEmail?<span className='text-red-600'>Invalid Email</span>:<span className='text-green-500'>Valid Email</span>}
-              <input  required onChange={()=>{handleChange();setAuthenticationResponse("")}} name="password" placeholder="Password" value={inputs.password} type="Password"></input>
+              <input className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                      required onChange={handleChange} name="password" placeholder="Password" value={inputs.password} type="password"></input>
             </>
            }
            {
             !isSignup &&
             <>
-               <input
-                class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                id="exampleFormControlInput2"
+               <input className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Email address"
                 required onChange={handleChange} name="email"   value={inputs.email} type="email"></input>
                { !validEmail?<span className='text-red-600'>Invalid Email</span>:<span className='text-green-500'>Valid Email</span>}
-               <input
-                class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                required onChange={handleChange} name="password" placeholder="Password" value={inputs.password} type="password"></input>
+               <input className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                      required onChange={handleChange} name="password" placeholder="Password" value={inputs.password} type="password"></input>
                 <spna className="text-red-600">{AuthenticationResponse?AuthenticationResponse:""}</spna>
             </>
            }
