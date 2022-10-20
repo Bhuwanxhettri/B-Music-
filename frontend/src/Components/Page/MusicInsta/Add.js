@@ -25,7 +25,9 @@ const Add = () => {
        event.preventDefault();   
        const requestOptions = {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers:{ "Content-Type": "application/json",
+                    'x-auth-token':`${localStorage.getItem('token')}`
+                },
         body: JSON.stringify(inputs),
       };
        await fetch("http://localhost:5000/add/blog",requestOptions).then(()=>{navigate("/instaMusic")});

@@ -13,7 +13,12 @@ const MusicInsta = () => {
   const [loding,setLoding] = useState(false);
   const fetchPostData = async()=>{
     setLoding(true);
-    const res = await fetch(`http://localhost:5000/instaMusic?page=${currentPage}`);
+    const options = {
+      headers: {
+        'x-auth-token':`${localStorage.getItem('token')}`,
+      }
+    };
+    const res = await fetch(`http://localhost:5000/instaMusic?page=${currentPage}`,options);
     const data = await res.json();
     setLoding(false)
     setPostData(data.blogs);
@@ -75,7 +80,7 @@ const MusicInsta = () => {
                     </div>
                      
                   </>:
-                   PostData.slice(0).reverse().map((item)=>{            
+                   PostData?.slice(0).reverse().map((item)=>{            
                           return(
                                 <>
                                   <Post 

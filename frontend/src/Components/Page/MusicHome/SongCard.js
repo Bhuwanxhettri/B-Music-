@@ -16,6 +16,7 @@ const SongCard = ({song,isPlaying,activeSong,i,data}) => {
         dispatch(playPause(true));
       };
 
+
       const FavoriuteSong = (fevSong)=>{
          console.log(fevSong);
       }
@@ -36,7 +37,7 @@ const SongCard = ({song,isPlaying,activeSong,i,data}) => {
             </div>  
             <div className=" px-4 py-3 flex flex-col">
                 {
-                   isLoggedIn && 
+                   (isLoggedIn !== "false") && 
                    <>
                       <button onClick={()=>{FavoriuteSong(song)}} type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm  text-gray-900 focus:outline-none bg-slate-200 shadow-red-100 shadow-lg font-bold rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add to Favoriute</button>
                    </>

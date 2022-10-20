@@ -8,6 +8,7 @@ const Auth = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isSignup,setSignup] = useState(false);
+  const [userInfo,setUserInfo] = useState({})
   const [inputs,setInputs] = useState({
     name:"",
     email:"",
@@ -23,27 +24,33 @@ const Auth = () => {
   }
 
   const sendRequest = async (type)=>{
-    //  const res = await axios.post("http://localhost:5000/login",inputs).catch(err=>console.log(err));
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email:inputs.email,password:inputs.password,name:inputs.name }),
     };
-    const res = await fetch(`http://localhost:5000/${type}`, requestOptions);
-    const data = await res.json();
-    setAuthenticationResponse(data.message);
+    try{
+      const res = await fetch(`http://localhost:5000/${type}`, requestOptions);
+      const data = await res.json();
+      console.log(data.existingUser);
+      setUserInfo(data.existingUser);
+      setAuthenticationResponse(data?.message);
+      localStorage.setItem("token",data.token);
+    }catch(err){
+         console.log(err,"error calling api");
+    }
   }
   const handleSubmit = async(event)=>{
         event.preventDefault();
         if(isSignup){
-            sendRequest("signup").then(()=>{dispatch(login())})
+            sendRequest("signup").then(()=>{dispatch(login(userInfo))})
             .then(()=>navigate("/instaMusic"));
         }else{
              await sendRequest("login");
         }   
   }
   if(AuthenticationResponse === "Login Successfull"){
-    dispatch(login())
+    dispatch(login(userInfo));
     navigate("/instaMusic");
   }
   return (

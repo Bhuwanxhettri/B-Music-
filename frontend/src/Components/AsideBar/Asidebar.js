@@ -27,9 +27,8 @@ const Asidebar = () => {
             <hr className="my-2"/>
             <ul className=" first-line:relative px-1">
                {
-                 isLoggedIn &&
+                 (isLoggedIn != "false") &&
                  <> 
-                    {/* <li className='list text-black text-md px-5 font-bold font-lg'><Link to="addMusic">Add Your Music</Link></li> */}
                     <li className='text-black text-md px-5 font-bold font-lg py-3'><Link to="favMusic">Faviroute Music</Link></li>
                     <li className='list my-3 text-black text-md px-5 font-bold font-lg'><Link to="instaMusic">Vew Post</Link></li>
                     <li className=' list  text-black text-md px-5 font-bold font-lg'><Link to="addMusicInsta">Add  Post</Link></li>
@@ -38,13 +37,13 @@ const Asidebar = () => {
                }
               
                 {
-                   !isLoggedIn&&
+                   !(isLoggedIn != "false")&&
                    <>
                      <li className='list text-black text-md px-5 font-bold font-lg py-3'><Link to="signUp">Login</Link></li>
                    </>
                 }
                 {
-                  isLoggedIn && 
+                  (isLoggedIn != "false") && 
                   <button onClick={logoutPage} className='text-black text-md px-5 font-bold font-lg py-3'>Logout</button>
                 }
                
