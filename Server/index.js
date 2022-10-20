@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import router from "./routes/user-routes";
 import blogRouter from "./routes/blog-routes";
 import { databaseConnect } from "./db/db";
+import favMusicRouter from "./routes/favMusic-routes";
 // import cloudinary from 'cloudinary'
 // import multer from "multer";
 
@@ -26,6 +27,7 @@ databaseConnect();
 app.use(router);
 
 app.use(blogRouter);
+app.use(favMusicRouter);
 
 
    // Get the file name and extension with multer
