@@ -1,9 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import {useSelector } from 'react-redux';
+import MusicPlayer from '../MusicHome/MusicPlayer/MusicPlayer';
 
 const Add = () => {
   const navigate = useNavigate();
+  const {isPlaying} = useSelector((state)=>state.player);
   const [inputs,setInputs] = useState({
     title:"",
     description:"",
@@ -54,6 +57,17 @@ const Add = () => {
            <input name="image" accept='.png, .jpg, .jpeg'  onChange={handlePhoto} class="block w-full text-md text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"  type="file"  />
            <button type='submit'class="inline-block px-6 py-2.5 bg-green-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-600 hover:shadow-lg focus:bg-green-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-700 active:shadow-lg transition duration-150 ease-in-out">Post</button>
       </form>
+     
+     <div>
+     {
+          isPlaying &&
+          <>
+             <div style={{backgroundColor:"white",marginTop:"80px"}} className=' shadow-orange-100 fixed z-20   w-full '>
+                 <MusicPlayer/>
+             </div>
+          </>                 
+      }
+     </div>
     </>
   )
 }

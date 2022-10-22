@@ -10,3 +10,8 @@ export const getFevMusic = async(userEmail)=>{
     const res = await axios.put(`${URL}/get`,userEmail);
     return res.data
 }
+
+export const removeFevMusic  = async(fevsong)=>{
+    const res = await axios.put(`${URL}/delete`,fevsong);
+    return res.data;
+}

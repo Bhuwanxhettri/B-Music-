@@ -1,7 +1,7 @@
 const BASE_URL ="https://shazam-core.p.rapidapi.com/v1"
 const Options = {
   headers: {
-    'X-RapidAPI-Key': '61b75fd6f7msh761ba973525f63fp12e1f3jsn761caebe05c3',
+    'X-RapidAPI-Key': '377dec16c0mshfc445eb552bfb51p13343ajsn6a057ff2ec07',
     'X-RapidAPI-Host': 'shazam-core.p.rapidapi.com'
   }
 };

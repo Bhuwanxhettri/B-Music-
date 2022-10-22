@@ -6,7 +6,7 @@ import { Audio } from  'react-loader-spinner'
 import MusicPlayer from './MusicPlayer/MusicPlayer'
 import SearchMusic from './SearchMusic';
 import { searchMusic } from '../../../services/musicApiCall/apiCall';
-// import { getFevMusic } from '../../../services/musicApiCall/favirouteMusic';
+import { getFevMusic } from '../../../services/musicApiCall/favirouteMusic';
 
 
 const genres = [
@@ -25,13 +25,13 @@ const MusicList = () => {
   const {isPlaying,activeSong} = useSelector((state)=>state.player);
   const [loading, setLoading] = useState(true);
   const [searchKey,setSearchKey] = useState("");
-  // const [fevMusic,setFevMusic] = useState([]);
+  const [fevMusic,setFevMusic] = useState([]);
   useEffect(()=>{ 
      setLoading(true);
      const fetchData = async ()=>{
      const data =  await getTopCharts(`charts/genre-world?genre_code=${genreListId}`);
-    //  const fev = await getFevMusic({userEmail:localStorage.getItem("user")});
-    //  setFevMusic(fev);
+     const fev = await getFevMusic({userEmail:localStorage.getItem("user")});
+     setFevMusic(fev);
      setTopCharts(data)
      setLoading(false);
     }
@@ -52,29 +52,8 @@ const MusicList = () => {
         setLoading(false);
     }
   }
-
-  const musicList = loading ?
-                      <>
-                      <div className='my-14 mx-auto'>
-                          <Audio height = "380" width = "380" radius = "9"color = 'red' ariaLabel = 'three-dots-loading'    wrapperStyle wrapperClass />
-                          <span className='text-xl text-center font-bold my-3'> Loading...</span> 
-                      </div>
-                      </>
-                     :
-                     topCharts?.map((song, i) => (
-                              <SongCard
-                              key={song.key}
-                              song={song}
-                              isPlaying={isPlaying}
-                              activeSong={activeSong}
-                              data={topCharts}
-                              i={i}
-                            />
-                          
-                    ))  
   return (
     <>
-          
             <div className="mb-10  mx-72  w-9/12 flex justify-between items-center sm:flex-row  ">
               <div className='w-8/12'>
                   <SearchMusic setSearchKey={setSearchKey}  SearchMusicFun={SearchMusicFun} />        
@@ -97,7 +76,33 @@ const MusicList = () => {
          
             <div className="shadow-orange-50  shadow-xl ml-72 flex flex-wrap sm:justify-start justify-center gap-8">
                {
-                    musicList
+                    loading ?
+                    <>
+                    <div className='my-14 mx-auto'>
+                        <Audio height = "380" width = "380" radius = "9"color = 'red' ariaLabel = 'three-dots-loading'    wrapperStyle wrapperClass />
+                        <span className='text-xl text-center font-bold my-3'> Loading...</span> 
+                    </div>
+                    </>
+                   :
+                   topCharts?.map((song, i) => {
+                    for(let i=0;i<fevMusic.length;i++){
+                          if(song.key === fevMusic[i].key){
+                            return
+                          } 
+                      }
+                      return (
+                        <>
+                            <SongCard
+                            key={song.key}
+                            song={song}
+                            isPlaying={isPlaying}
+                            activeSong={activeSong}
+                            data={topCharts}
+                            i={i}
+                          />
+                        </>
+                      )  
+              }) 
                }
           </div>
     </>
@@ -105,5 +110,4 @@ const MusicList = () => {
 }
 
 export default MusicList
-
 
