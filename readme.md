@@ -7,9 +7,8 @@ Technology used MongoDB,Node Js,Express Material Ui Tailwind css , All music dat
 - [x] Music Blog Page
 - [x] Music Play and Puse buddon
 - [x] Search music feature
-- [ ] Add Fevroute Music
-
-
+- [x] Add Fevroute Music
+- [ ] Find most listen music
 
 
 Future Plans
