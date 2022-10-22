@@ -11,7 +11,7 @@ export const authSlice = createSlice({
       state.isLoggedIn = "true";
       state.user = action.payload
       localStorage.setItem("login","true");
-      localStorage.setItem("user",action.payload)
+      localStorage.setItem("user",state.user.email);
     },
     logout: (state) => {
       state.isLoggedIn = "false";

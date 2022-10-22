@@ -2,9 +2,12 @@ import React from 'react'
 import PlayPause from './PlayPause';
 import { playPause, setActiveSong } from '../../../store/features/playerSlice';
 import { useSelector,useDispatch } from 'react-redux';
+import { favoriuteSong } from '../../../services/musicApiCall/favirouteMusic';
 // import { AiFillHeart } from "react-icons/ai";
 
 const SongCard = ({song,isPlaying,activeSong,i,data}) => {
+    console.log(song);
+
     const dispatch = useDispatch();
     const {isLoggedIn} = useSelector(state=>state.auth);
     const handlePauseClick = () => {
@@ -16,10 +19,20 @@ const SongCard = ({song,isPlaying,activeSong,i,data}) => {
         dispatch(playPause(true));
       };
 
-
       const FavoriuteSong = (fevSong)=>{
-         console.log(fevSong);
+            const fev = {
+                fevSongs:{
+                    key:fevSong.key,
+                    image:fevSong.images.coverarthq                ,
+                    title:fevSong.title,
+                    subtitle:fevSong.subtitle,
+                     url:fevSong.url
+                },
+                userEmail:localStorage.getItem("user")
+            }
+           favoriuteSong(fev);
       }
+      console.log(song)
   return (
    <>
       <div className="flex flex-col gap-3 w-[230px]  transition-all  bg-white backdrop-blur-sm animate-slideup rounded-lg ">

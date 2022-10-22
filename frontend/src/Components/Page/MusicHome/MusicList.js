@@ -6,6 +6,7 @@ import { Audio } from  'react-loader-spinner'
 import MusicPlayer from './MusicPlayer/MusicPlayer'
 import SearchMusic from './SearchMusic';
 import { searchMusic } from '../../../services/musicApiCall/apiCall';
+// import { getFevMusic } from '../../../services/musicApiCall/favirouteMusic';
 
 
 const genres = [
@@ -24,15 +25,18 @@ const MusicList = () => {
   const {isPlaying,activeSong} = useSelector((state)=>state.player);
   const [loading, setLoading] = useState(true);
   const [searchKey,setSearchKey] = useState("");
-
+  // const [fevMusic,setFevMusic] = useState([]);
   useEffect(()=>{ 
      setLoading(true);
      const fetchData = async ()=>{
      const data =  await getTopCharts(`charts/genre-world?genre_code=${genreListId}`);
+    //  const fev = await getFevMusic({userEmail:localStorage.getItem("user")});
+    //  setFevMusic(fev);
      setTopCharts(data)
      setLoading(false);
     }
     fetchData()
+
   },[genreListId])
 
   const SearchMusicFun = async ()=>{
@@ -49,53 +53,57 @@ const MusicList = () => {
     }
   }
 
+  const musicList = loading ?
+                      <>
+                      <div className='my-14 mx-auto'>
+                          <Audio height = "380" width = "380" radius = "9"color = 'red' ariaLabel = 'three-dots-loading'    wrapperStyle wrapperClass />
+                          <span className='text-xl text-center font-bold my-3'> Loading...</span> 
+                      </div>
+                      </>
+                     :
+                     topCharts?.map((song, i) => (
+                              <SongCard
+                              key={song.key}
+                              song={song}
+                              isPlaying={isPlaying}
+                              activeSong={activeSong}
+                              data={topCharts}
+                              i={i}
+                            />
+                          
+                    ))  
   return (
     <>
-            <div className=" w-4/6 shadow-orange-50 shadow-md p-4 sticky z-20 bg-black mx-72 mb-5  flex justify-between items-center sm:flex-row flex-col ">
-
-              <h2 className="font-bold text-center text-xl text-white ">Discover {genreListId.toLowerCase()}</h2>
-              <select onChange={(e)=>{setGenreListId(e.target.value)}} className="bg-blue-900 text-white font-bold p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5">
-                  {genres.map((genre) => <option key={genre.value} value={genre.value}>{genre.title}</option>)}
-              </select>
+          
+            <div className="mb-10  mx-72  w-9/12 flex justify-between items-center sm:flex-row  ">
+              <div className='w-8/12'>
+                  <SearchMusic setSearchKey={setSearchKey}  SearchMusicFun={SearchMusicFun} />        
+              </div>
+              <div>
+                  <select onChange={(e)=>{setGenreListId(e.target.value)}} className="bg-blue-900 text-white font-bold p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5">
+                      {genres.map((genre) => <option key={genre.value} value={genre.value}>{genre.title}</option>)}
+                  </select>
+              </div>
+             
             </div>
-
-            <SearchMusic setSearchKey={setSearchKey}  SearchMusicFun={SearchMusicFun} />
-
                   {
                      isPlaying &&
                      <>
-                        <div style={{backgroundColor:"#000000",marginTop:"350px"}} className=' fixed z-20   w-full '>
+                        <div style={{backgroundColor:"white",marginTop:"430px"}} className=' shadow-orange-100 fixed z-20   w-full '>
                             <MusicPlayer/>
                         </div>
                      </>      
                   }
          
             <div className="shadow-orange-50  shadow-xl ml-72 flex flex-wrap sm:justify-start justify-center gap-8">
-
                {
-                   loading ?
-                   <>
-                    <div className='my-14 mx-auto'>
-                        <Audio height = "380" width = "380" radius = "9"color = 'red' ariaLabel = 'three-dots-loading'    wrapperStyle wrapperClass />
-                        <span className='text-xl text-center font-bold my-3'> Loading...</span> 
-                    </div>
-                   </>
-                  :
-                      topCharts?.map((song, i) => (
-                        <SongCard
-                          key={song.key}
-                          song={song}
-                          isPlaying={isPlaying}
-                          activeSong={activeSong}
-                          data={topCharts}
-                          i={i}
-                        />
-                      ))   
-                }
-
+                    musicList
+               }
           </div>
     </>
   )
 }
 
 export default MusicList
+
+

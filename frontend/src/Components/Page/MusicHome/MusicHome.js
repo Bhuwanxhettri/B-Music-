@@ -4,7 +4,7 @@ import MusicList from './MusicList'
 const MusicHome = () => {
   return (
     <>
-       <div className='mx-auto bg-gray-900 p-5'>
+       <div className='mx-auto p-5'>
           <MusicList/>
        </div>
     </>

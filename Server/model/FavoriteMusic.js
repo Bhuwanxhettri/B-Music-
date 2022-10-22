@@ -19,7 +19,8 @@ const favoriteSchema = mongoose.Schema({
           type:String,
         }
 
-     }],
+     }
+    ],
     userEmail:{
       type:String
     },

@@ -5,7 +5,6 @@ import MusicHome from "./Components/Page/MusicHome/MusicHome";
 import {Routes, Route } from "react-router-dom";
 import MusicInsta from "./Components/Page/MusicInsta/MusicInsta";
 import Auth from "./Components/Page/SignUp/Auth";
-import AddMusic from "./Components/Page/AddMusic";
 import Add from "./Components/Page/MusicInsta/Add";
 import { useSelector} from 'react-redux'
 
@@ -25,7 +24,6 @@ const App = () => {
                 <>
                   <Route path="instaMusic" element={ <MusicInsta/>} />
                   <Route path="addMusicInsta" element={ <Add/>} />
-                  <Route path="addMusic" element={ <AddMusic/>} />
                   <Route path="favMusic" element={<FovriouteMusic />} />
                 </>
               }
